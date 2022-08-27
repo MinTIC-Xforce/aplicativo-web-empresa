@@ -12,10 +12,10 @@ public class Empleados {
     private String apellidosEmpleado;
     private String correoEmpleado;
     private String empresaEmpleado;
-    private String rolEmpleado;
+    private Boolean rolEmpleado;
 
     //Constructor
-    public Empleados (String nombresEmpleado, String apellidosEmpleado, String correoEmpleado, String empresaEmpleado, String rolEmpleado) {
+    public Empleados (String nombresEmpleado, String apellidosEmpleado, String correoEmpleado, String empresaEmpleado, Boolean rolEmpleado) {
         this.nombresEmpleado = nombresEmpleado;
         this.apellidosEmpleado = apellidosEmpleado;
         this.correoEmpleado = correoEmpleado;
@@ -59,12 +59,13 @@ public class Empleados {
         this.empresaEmpleado = empresaEmpleado;
     }
 
-    public String getRolEmpleado() {
+    public Boolean getRolEmpleado() {
         return this.rolEmpleado;
     }
 
-    public void setRolEmpleado(String rolEmpleado) {
+    public void setRolEmpleado(Boolean rolEmpleado) {
         this.rolEmpleado = rolEmpleado;
     }
+
 
   }
