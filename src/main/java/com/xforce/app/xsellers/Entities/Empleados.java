@@ -1,4 +1,4 @@
-package com.xforce.app.xsellers;
+package com.xforce.app.xsellers.Entities;
 
 import javax.persistence.*;
 
