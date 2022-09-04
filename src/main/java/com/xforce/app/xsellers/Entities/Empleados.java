@@ -1,17 +1,28 @@
 package com.xforce.app.xsellers.Entities;
-
 import javax.persistence.*;
 
 @Entity
+@Table(name="empleados")
+
 public class Empleados {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEmpleado;
+
+    @Column(name="nombresEmpleado")
     private String nombresEmpleado;
+
+    @Column(name="apellidosEmpleado")
     private String apellidosEmpleado;
+
+    @Column(name="correoEmpleado")
     private String correoEmpleado;
+
+    @Column(name="empresaEmpleado")
     private String empresaEmpleado;
+
+    @Column(name="rolEmpleado")
     private Boolean rolEmpleado;
 
     //Constructor
@@ -21,6 +32,10 @@ public class Empleados {
         this.correoEmpleado = correoEmpleado;
         this.empresaEmpleado = empresaEmpleado;         
         this.rolEmpleado = rolEmpleado;         
+     }
+
+     public Empleados (){
+
      }
   
     //Métodos
