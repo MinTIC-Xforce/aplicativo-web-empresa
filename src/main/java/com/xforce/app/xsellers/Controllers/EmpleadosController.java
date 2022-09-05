@@ -5,8 +5,10 @@ import com.xforce.app.xsellers.Services.EmpleadosService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @RestController
@@ -29,17 +31,21 @@ public class EmpleadosController {
 
 
     @GetMapping("/user/[id]")
-    public String usersGetIdList(){
-        return "hola mundo";
+    public Empleados userGetIdList(@PathVariable long id){
+        return this.service.getEmpleado(id);
     }
 
-    @PostMapping("/user/[id]")
-    public String usersPostIdList(){
-        return "hola mundo";
-    }
     
-    @PatchMapping("/user/[id]")
-    public String usersPathIdList(){
-        return "hola mundo";
+    @DeleteMapping("/user/[id]")
+    public void usersPathIdList(@PathVariable long id){
+         this.service.delEmpleado(id);
     }
+
+    @PatchMapping("/user/[id]")
+    public Empleados usersPathIdList(@PathVariable long id, @RequestBody Empleados empleado){
+         this.service.updateEmpleado(id, empleado);
+         return empleado;
+    }
+
+   
 }
