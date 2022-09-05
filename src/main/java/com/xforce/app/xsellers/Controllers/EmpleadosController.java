@@ -30,18 +30,18 @@ public class EmpleadosController {
     }
 
 
-    @GetMapping("/user/[id]")
+    @GetMapping("/user/{id}")
     public Empleados userGetIdList(@PathVariable long id){
         return this.service.getEmpleado(id);
     }
 
     
-    @DeleteMapping("/user/[id]")
+    @DeleteMapping("/user/{id}")
     public void usersPathIdList(@PathVariable long id){
          this.service.delEmpleado(id);
     }
 
-    @PatchMapping("/user/[id]")
+    @PatchMapping("/user/{id}")
     public Empleados usersPathIdList(@PathVariable long id, @RequestBody Empleados empleado){
          this.service.updateEmpleado(id, empleado);
          return empleado;
