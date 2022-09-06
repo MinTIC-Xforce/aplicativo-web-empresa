@@ -1,51 +1,67 @@
 package com.xforce.app.xsellers.Entities;
-public class Empresa {
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="empresas")
+public class Empresas {
     //Atributos
-      private int nitEmpresa;
-      private String nombreEmpresa;
-      private String direccionEmpresa;
-      private String telefonoEmpresa;
-      //Constructor
-      public Empresa(String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, int nitEmpresa) {
-         this.nitEmpresa = nitEmpresa;
-         this.nombreEmpresa = nombreEmpresa;
-         this.direccionEmpresa = direccionEmpresa;
-         this.telefonoEmpresa = telefonoEmpresa;         
-      }
-  
-      //Métodos
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @Column(name="nitEmpresa")
+    private int nitEmpresa;
+    @Column(name="nombreEmpresa")
+    private String nombreEmpresa;
+    @Column(name="direccionEmpresa")
+    private String direccionEmpresa;
+    @Column(name="telefonoEmpresa")
+    private String telefonoEmpresa;
 
-  
-      //Getters y Setters
-      public int getNitEmpresa() {
-          return nitEmpresa;
-      }
-  
-      public void setNitEmpresa(int nitEmpresa) {
-          this.nitEmpresa = nitEmpresa;
-      }
-  
-      public String getNombreEmpresa() {
-          return nombreEmpresa;
-      }
-  
-      public void setNombreEmpresa(String nombreEmpresa) {
-          this.nombreEmpresa = nombreEmpresa;
-      }
-  
-      public String getDireccionEmpresa() {
-          return direccionEmpresa;
-      }
-  
-      public void setDireccionEmpresa(String direccionEmpresa) {
-          this.direccionEmpresa = direccionEmpresa;
-      }
+    public Empresas() {
+    }
 
-      public String getTelefonoEmpresa() {
-          return telefonoEmpresa;
-      }
-  
-      public void setTelefonoEmpresa(String telefonoEmpresa) {
-         this.telefonoEmpresa = telefonoEmpresa; 
-      }
-  }
+    //Constructor
+    public Empresas(String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, int nitEmpresa) {
+        this.nitEmpresa = nitEmpresa;
+        this.nombreEmpresa = nombreEmpresa;
+        this.direccionEmpresa = direccionEmpresa;
+        this.telefonoEmpresa = telefonoEmpresa;
+    }
+
+    //Métodos
+
+
+    //Getters y Setters
+    public int getNitEmpresa() {
+        return nitEmpresa;
+    }
+
+    public void setNitEmpresa(int nitEmpresa) {
+        this.nitEmpresa = nitEmpresa;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public String getDireccionEmpresa() {
+        return direccionEmpresa;
+    }
+
+    public void setDireccionEmpresa(String direccionEmpresa) {
+        this.direccionEmpresa = direccionEmpresa;
+    }
+
+    public String getTelefonoEmpresa() {
+        return telefonoEmpresa;
+    }
+
+    public void setTelefonoEmpresa(String telefonoEmpresa) {
+        this.telefonoEmpresa = telefonoEmpresa;
+    }
+}
