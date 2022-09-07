@@ -10,7 +10,7 @@ public class MovimientoDinero {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idMovimiento;
+    private Long idMovimiento;
     
     @Column(name="montoMovimiento")
     private float montoMovimiento;
@@ -33,11 +33,11 @@ public class MovimientoDinero {
     //Getters y Setters
 
 
-    public long getIdMovimiento() {
+    public Long getIdMovimiento() {
         return idMovimiento;
     }
 
-    public void setIdMovimiento(long idMovimiento) {
+    public void setIdMovimiento(Long idMovimiento) {
         this.idMovimiento = idMovimiento;
     }
 
