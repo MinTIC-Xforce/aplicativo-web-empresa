@@ -10,6 +10,10 @@ public class Empleados {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEmpleado;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdEmpresa")
+    private Empresas empresas;
+
     @Column(name="nombresEmpleado")
     private String nombresEmpleado;
 

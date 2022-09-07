@@ -1,5 +1,8 @@
 package com.xforce.app.xsellers.Entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +20,10 @@ public class Empresas {
     private String direccionEmpresa;
     @Column(name="telefonoEmpresa")
     private String telefonoEmpresa;
+
+    @OneToMany(mappedBy = "empresas")
+    private Set<Empleados> empleado = new HashSet<>();
+
 
     public Empresas() {
     }
