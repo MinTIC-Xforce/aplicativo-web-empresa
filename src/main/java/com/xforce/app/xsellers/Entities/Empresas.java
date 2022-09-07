@@ -1,5 +1,4 @@
 package com.xforce.app.xsellers.Entities;
-
 import java.util.HashSet;
 import java.util.Set;
 

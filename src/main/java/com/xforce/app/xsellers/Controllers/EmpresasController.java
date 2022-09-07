@@ -5,6 +5,7 @@ import com.xforce.app.xsellers.Services.EmpresasService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class EmpresasController {
@@ -24,17 +25,17 @@ public class EmpresasController {
         return this.service.createEmpresa(empresa);
     }
 
-    @GetMapping("/empresa/{id}")
+    @GetMapping("/empresas/{id}")
     public Empresas userGetIdList(@PathVariable long id){
         return this.service.getEmpresa(id);
     }
 
-    @DeleteMapping("/empresa/{id}")
+    @DeleteMapping("/empresas/{id}")
     public void usersPathIdList(@PathVariable long id){
         this.service.delEmpresa(id);
     }
 
-    @PatchMapping("/empresa/{id}")
+    @PatchMapping("/empresas/{id}")
     public Empresas usersPathIdList(@PathVariable long id, @RequestBody Empresas empresa){
         this.service.updateEmpresa(id, empresa);
         return empresa;

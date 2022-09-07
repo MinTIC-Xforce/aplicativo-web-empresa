@@ -1,4 +1,5 @@
 package com.xforce.app.xsellers.Entities;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,40 +12,36 @@ public class Empleados {
     private Long idEmpleado;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdEmpresa")
+    @JoinColumn(name = "id_empresa")
     private Empresas empresas;
 
-    @Column(name="nombresEmpleado")
+    @Column(name="nombres_empleado")
     private String nombresEmpleado;
 
-    @Column(name="apellidosEmpleado")
+    @Column(name="apellidos_empleado")
     private String apellidosEmpleado;
 
-    @Column(name="correoEmpleado")
+    @Column(name="correo_empleado")
     private String correoEmpleado;
 
-    @Column(name="empresaEmpleado")
-    private String empresaEmpleado;
-
-    @Column(name="rolEmpleado")
-    private Boolean rolEmpleado;
+    @Column(name="rol_empleado")
+    private Long rolEmpleado;
 
     //Constructor
-    public Empleados (String nombresEmpleado, String apellidosEmpleado, String correoEmpleado, String empresaEmpleado, Boolean rolEmpleado) {
+    public Empleados (String nombresEmpleado, String apellidosEmpleado, String correoEmpleado, String empresaEmpleado, Long rolEmpleado) {
         this.nombresEmpleado = nombresEmpleado;
         this.apellidosEmpleado = apellidosEmpleado;
         this.correoEmpleado = correoEmpleado;
-        this.empresaEmpleado = empresaEmpleado;         
-        this.rolEmpleado = rolEmpleado;         
-     }
+        this.rolEmpleado = rolEmpleado;
+    }
 
-     public Empleados (){
+    public Empleados (){
 
-     }
-  
+    }
+
     //Métodos
 
-  
+
     //Getters y Setters
     public String getNombresEmpleado() {
         return this.nombresEmpleado;
@@ -70,21 +67,13 @@ public class Empleados {
         this.correoEmpleado = correoEmpleado;
     }
 
-    public String getEmpresaEmpleado() {
-        return this.empresaEmpleado;
-    }
-
-    public void setEmpresaEmpleado(String empresaEmpleado) {
-        this.empresaEmpleado = empresaEmpleado;
-    }
-
-    public Boolean getRolEmpleado() {
+    public Long getRolEmpleado() {
         return this.rolEmpleado;
     }
 
-    public void setRolEmpleado(Boolean rolEmpleado) {
+    public void setRolEmpleado(Long rolEmpleado) {
         this.rolEmpleado = rolEmpleado;
     }
 
 
-  }
+}

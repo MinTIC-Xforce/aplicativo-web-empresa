@@ -1,9 +1,11 @@
 package com.xforce.app.xsellers.Services;
+
 import com.xforce.app.xsellers.Entities.Empleados;
 import com.xforce.app.xsellers.Repositories.EmpleadosRepository;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
-import org.springframework.stereotype.Service;
 
 @Service
 public class EmpleadosService {
@@ -12,7 +14,7 @@ public class EmpleadosService {
 
     public EmpleadosService (EmpleadosRepository repository ){
         this.repository = repository;
-    }    
+    }
 
 
     public List<Empleados> getEmpleados(){
@@ -21,7 +23,7 @@ public class EmpleadosService {
 
     public Empleados getEmpleado(long id){
         Optional<Empleados> empleadoResponse =  this.repository.findById(id);
-		Empleados empleado = empleadoResponse.get();
+        Empleados empleado = empleadoResponse.get();
         return empleado;
     }
 
@@ -30,7 +32,7 @@ public class EmpleadosService {
     }
 
     public void delEmpleado(long id){
-        this.repository.deleteById(id);   
+        this.repository.deleteById(id);
     }
 
     public void updateEmpleado(long id, Empleados empleado){
@@ -38,11 +40,10 @@ public class EmpleadosService {
         empleadoToUpdate.setNombresEmpleado(empleado.getNombresEmpleado());
         empleadoToUpdate.setApellidosEmpleado(empleado.getApellidosEmpleado());
         empleadoToUpdate.setCorreoEmpleado(empleado.getCorreoEmpleado());
-        empleadoToUpdate.setEmpresaEmpleado(empleado.getEmpresaEmpleado());
         empleadoToUpdate.setRolEmpleado(empleado.getRolEmpleado());
         this.repository.save(empleadoToUpdate);
 
     }
 
-    
+
 }
