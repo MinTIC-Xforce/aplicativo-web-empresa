@@ -1,10 +1,8 @@
 package com.xforce.app.xsellers.Controllers;
 
-
 import com.xforce.app.xsellers.Entities.Empleados;
 import com.xforce.app.xsellers.Services.EmpleadosService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -22,6 +20,7 @@ public class EmpleadosController {
 
     @PostMapping("/users")
     public Empleados createPostEmpleado(@RequestBody Empleados empleado){
+        System.out.println(empleado.getEmpresas().getId());
         return this.service.createEmpleado(empleado);
     }
 

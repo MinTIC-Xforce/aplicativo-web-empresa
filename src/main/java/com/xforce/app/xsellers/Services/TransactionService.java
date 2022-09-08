@@ -5,7 +5,6 @@ import com.xforce.app.xsellers.Repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TransactionService {
@@ -16,8 +15,9 @@ public class TransactionService {
     }
 
     public Transaction getTransactionById(Long id){
-        Optional<Transaction> transactionResponse = Optional.ofNullable(transactionRepository.findById(id).orElse(null));
-        return  transactionResponse.get();
+        //Optional<Transaction> transactionResponse = Optional.ofNullable(transactionRepository.findById(id).orElse(null));
+        return this.transactionRepository.getReferenceById(id);
+        //return  transactionResponse.get();
     }
 
     public List<Transaction> getAllTransaction(){

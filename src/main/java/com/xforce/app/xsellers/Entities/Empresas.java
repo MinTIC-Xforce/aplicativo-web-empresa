@@ -70,4 +70,11 @@ public class Empresas {
     public void setTelefonoEmpresa(String telefonoEmpresa) {
         this.telefonoEmpresa = telefonoEmpresa;
     }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId (Long id) {
+        this.id = id;
+    }
 }

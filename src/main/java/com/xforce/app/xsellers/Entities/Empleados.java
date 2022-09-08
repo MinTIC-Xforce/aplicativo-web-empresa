@@ -12,7 +12,7 @@ public class Empleados {
     private Long idEmpleado;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_empresa")
+    @JoinColumn(name = "id_empresa",referencedColumnName = "id")
     private Empresas empresas;
 
     @Column(name="nombres_empleado")
@@ -25,19 +25,31 @@ public class Empleados {
     private String correoEmpleado;
 
     @Column(name="rol_empleado")
-    private Long rolEmpleado;
+    private Enum<rolEmpleado> rolEmpleado;
 
     //Constructor
-    public Empleados (String nombresEmpleado, String apellidosEmpleado, String correoEmpleado, String empresaEmpleado, Long rolEmpleado) {
+   /*  public Empleados (String nombresEmpleado, String apellidosEmpleado, String correoEmpleado, String empresaEmpleado, Long rolEmpleado, Empresas empresas) {
         this.nombresEmpleado = nombresEmpleado;
         this.apellidosEmpleado = apellidosEmpleado;
         this.correoEmpleado = correoEmpleado;
         this.rolEmpleado = rolEmpleado;
-    }
+        this.empresas = empresas;
+    }*/
 
     public Empleados (){
+       
 
     }
+
+    public String toString () {
+        return  this.nombresEmpleado + " " + this.empresas;
+    }
+
+
+    private enum rolEmpleado {
+        USUARIO,
+        ADMINISTRADOR
+      }
 
     //Métodos
 
@@ -67,13 +79,20 @@ public class Empleados {
         this.correoEmpleado = correoEmpleado;
     }
 
-    public Long getRolEmpleado() {
+    public Enum<rolEmpleado> getRolEmpleado() {
         return this.rolEmpleado;
     }
 
-    public void setRolEmpleado(Long rolEmpleado) {
+    public void setRolEmpleado(Enum<rolEmpleado> rolEmpleado) {
         this.rolEmpleado = rolEmpleado;
     }
 
+    public Empresas getEmpresas() {
+        return this.empresas;
+    }
+
+    public void setEmpresas(Empresas empresas) {
+        this.empresas = empresas;
+    }
 
 }
