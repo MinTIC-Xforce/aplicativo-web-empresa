@@ -1,5 +1,6 @@
 package com.xforce.app.xsellers.Entities;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -23,6 +24,13 @@ public class Empresas {
     @OneToMany(mappedBy = "empresas")
     private Set<Empleados> empleado = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "transaccion_empresa",
+            joinColumns={@JoinColumn(name="id_empresa")},
+            inverseJoinColumns = {@JoinColumn(name="id_transaccion")}
+    )
+    private List<Empresas> EmpresasTransaccion;
 
     public Empresas() {
     }

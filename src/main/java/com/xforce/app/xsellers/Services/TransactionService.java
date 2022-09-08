@@ -15,6 +15,10 @@ public class TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
+    public List<Transaction> getAllTransactionEmpresa(Long id){
+        return this.transactionRepository.findByEnterpriseId(id);
+    }
+
     public Transaction getTransactionById(Long id){
         Optional<Transaction> transactionResponse = Optional.ofNullable(transactionRepository.findById(id).orElse(null));
         return  transactionResponse.get();
@@ -31,6 +35,10 @@ public class TransactionService {
     public String deleteTransactionById(Long id){
         this.transactionRepository.deleteById(id);
         return "Transacción " +id +" Eliminada";
+    }
+
+    public List<Transaction> findTrxByEnterprise(Long idEmpresa, Long idTrx){
+        return this.transactionRepository.findTrxByEnterprise(idEmpresa, idTrx);
     }
 
     public String updateTransaction(Long id, Transaction transaction) {
