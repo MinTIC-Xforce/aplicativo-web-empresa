@@ -25,7 +25,7 @@ public class Empleados {
     private String correoEmpleado;
 
     @Column(name="rol_empleado")
-    private Enum<rolEmpleado> rolEmpleado;
+    private Long rolEmpleado;
 
     //Constructor
    /*  public Empleados (String nombresEmpleado, String apellidosEmpleado, String correoEmpleado, String empresaEmpleado, Long rolEmpleado, Empresas empresas) {
@@ -79,11 +79,11 @@ public class Empleados {
         this.correoEmpleado = correoEmpleado;
     }
 
-    public Enum<rolEmpleado> getRolEmpleado() {
+    public Long getRolEmpleado() {
         return this.rolEmpleado;
     }
 
-    public void setRolEmpleado(Enum<rolEmpleado> rolEmpleado) {
+    public void setRolEmpleado(Long rolEmpleado) {
         this.rolEmpleado = rolEmpleado;
     }
 
@@ -95,4 +95,11 @@ public class Empleados {
         this.empresas = empresas;
     }
 
+    public Long getIdEmpleado() {
+        return this.idEmpleado;
+    }
+
+    public void setIdEmpleado(Long idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
 }
