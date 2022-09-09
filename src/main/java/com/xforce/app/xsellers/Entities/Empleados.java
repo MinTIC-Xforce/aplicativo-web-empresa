@@ -1,5 +1,8 @@
 package com.xforce.app.xsellers.Entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +17,9 @@ public class Empleados {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
     private Empresas empresas;
+
+    @OneToMany(mappedBy = "empleados")
+    private Set<MovimientoDinero> movimientoDinero = new HashSet<>();
 
     @Column(name="nombres_empleado")
     private String nombresEmpleado;
@@ -102,4 +108,12 @@ public class Empleados {
     public void setIdEmpleado(Long idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
+    public Set<MovimientoDinero> getMovimientoDinero() {
+        return this.movimientoDinero;
+    }
+
+    public void setMovimientoDinero(Set<MovimientoDinero> movimientoDinero) {
+        this.movimientoDinero = movimientoDinero;
+    }
+
 }

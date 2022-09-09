@@ -1,6 +1,5 @@
 package com.xforce.app.xsellers.Entities;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -18,14 +17,14 @@ public class MovimientoDinero {
     @Column(name= "conceptoMovimiento")
     private String conceptoMovimiento;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_empleado",referencedColumnName = "idEmpleado")
+    private Empleados empleados;
+
+    
+
+
     //Constructor
-
-
-    public MovimientoDinero(Long idMovimiento, float montoMovimiento, String conceptoMovimiento) {
-        this.idMovimiento = idMovimiento;
-        this.montoMovimiento = montoMovimiento;
-        this.conceptoMovimiento = conceptoMovimiento;
-    }
 
     public MovimientoDinero() {
     }
@@ -55,6 +54,14 @@ public class MovimientoDinero {
 
     public void setConceptoMovimiento(String conceptoMovimiento) {
         this.conceptoMovimiento = conceptoMovimiento;
+    }
+
+    public Empleados getEmpleados() {
+        return this.empleados;
+    }
+
+    public void setEmpleados(Empleados empleados) {
+        this.empleados = empleados;
     }
 }
 
