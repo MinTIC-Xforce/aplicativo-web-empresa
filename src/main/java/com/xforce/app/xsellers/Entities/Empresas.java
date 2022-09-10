@@ -23,6 +23,8 @@ public class Empresas {
      @OneToMany(mappedBy = "empresas")
     private Set<Empleados> empleados = new HashSet<>();
 
+    @OneToMany(mappedBy = "empresas")
+    private Set<MovimientoDinero> movimientoDinero = new HashSet<>();
     public Empresas() {
     }
 

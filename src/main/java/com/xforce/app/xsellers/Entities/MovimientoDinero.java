@@ -2,7 +2,7 @@ package com.xforce.app.xsellers.Entities;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Optional;
 
 
 @Entity
@@ -24,6 +24,11 @@ public class MovimientoDinero {
    @JoinColumn(name = "id_empleado",referencedColumnName = "idEmpleado")
    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empleados empleados;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idEmpresa",referencedColumnName = "id")
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Empresas empresas;
 
     //Constructor
 
@@ -65,6 +70,13 @@ public class MovimientoDinero {
         this.empleados = empleados;
     }
 
+    public Empresas getEmpresas() {
+        return empresas;
+    }
+
+    public void setEmpresas(Empresas empresas) {
+        this.empresas = empresas;
+    }
 }
 
 

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmpresasRepository extends JpaRepository<Empresas, Long>{
+    Empresas getById(Long idEmpresa);
 }
