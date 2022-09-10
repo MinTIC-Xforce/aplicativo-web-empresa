@@ -65,13 +65,6 @@ public class MovimientoDinero {
         this.empleados = empleados;
     }
 
-    public Empresas getEmpresas() {
-        return empresas;
-    }
-
-    public void setEmpresas(Empresas empresas) {
-        this.empresas = empresas;
-    }
 }
 
 

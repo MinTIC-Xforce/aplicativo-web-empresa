@@ -21,8 +21,7 @@ public class Empleados {
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
     //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresas empresas;
- 
-    
+   
     @OneToMany(mappedBy = "empleados")
     private Set<MovimientoDinero> movimientoDinero = new HashSet<>();
 
