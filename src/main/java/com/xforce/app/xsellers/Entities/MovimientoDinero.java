@@ -64,6 +64,14 @@ public class MovimientoDinero {
     public void setEmpleados(Empleados empleados) {
         this.empleados = empleados;
     }
+
+    public Empresas getEmpresas() {
+        return empresas;
+    }
+
+    public void setEmpresas(Empresas empresas) {
+        this.empresas = empresas;
+    }
 }
 
 
