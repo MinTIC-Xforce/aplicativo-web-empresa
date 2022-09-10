@@ -21,6 +21,9 @@ public class MovimientoDinero {
     @JoinColumn(name = "id_empleado",referencedColumnName = "idEmpleado")
     private Empleados empleados;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_empresa",referencedColumnName = "id")
+    private Empresas empresas;
     
 
 
@@ -62,6 +65,14 @@ public class MovimientoDinero {
 
     public void setEmpleados(Empleados empleados) {
         this.empleados = empleados;
+    }
+
+    public Empresas getEmpresas() {
+        return empresas;
+    }
+
+    public void setEmpresas(Empresas empresas) {
+        this.empresas = empresas;
     }
 }
 
