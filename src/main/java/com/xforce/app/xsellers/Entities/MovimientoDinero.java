@@ -2,6 +2,9 @@ package com.xforce.app.xsellers.Entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 @Entity
 @Table(name="movimientoDinero")
 public class MovimientoDinero {
@@ -17,12 +20,10 @@ public class MovimientoDinero {
     @Column(name= "conceptoMovimiento")
     private String conceptoMovimiento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_empleado",referencedColumnName = "idEmpleado")
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "id_empleado",referencedColumnName = "idEmpleado")
+   //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empleados empleados;
-
-    
-
 
     //Constructor
 

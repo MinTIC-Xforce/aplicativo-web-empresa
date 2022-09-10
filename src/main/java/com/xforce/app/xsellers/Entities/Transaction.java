@@ -2,8 +2,12 @@ package com.xforce.app.xsellers.Entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name= "transaccion")
+@JsonIgnoreProperties(value = {"ibernateLazyInitializer","handler"})
+
 public class Transaction {
 
     //Atributos
@@ -20,11 +24,7 @@ public class Transaction {
 
     //Constructor
 
-    public Transaction(Long idMovimiento, float montoMovimiento, String conceptoMovimiento) {
-        this.idMovimiento = idMovimiento;
-        this.montoMovimiento = montoMovimiento;
-        this.conceptoMovimiento = conceptoMovimiento;
-    }
+  
 
     public Transaction(){}
 

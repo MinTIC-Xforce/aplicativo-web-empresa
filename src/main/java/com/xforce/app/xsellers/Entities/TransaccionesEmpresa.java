@@ -2,8 +2,12 @@ package com.xforce.app.xsellers.Entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "transaccionEmpresa")
+@JsonIgnoreProperties(value = {"ibernateLazyInitializer","handler"})
+
 public class TransaccionesEmpresa {
     @Id
     private Long id;
@@ -16,11 +20,7 @@ public class TransaccionesEmpresa {
     @JoinColumn(name="id_transaccion")
     private  Transaction idTransacion;
 
-    public TransaccionesEmpresa(Long id, Empresas idEmpresa, Transaction idTransacion) {
-        this.id = id;
-        this.idEmpresa = idEmpresa;
-        this.idTransacion = idTransacion;
-    }
+
 
     public TransaccionesEmpresa(){}
 }

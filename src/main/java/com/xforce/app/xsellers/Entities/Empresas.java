@@ -20,20 +20,15 @@ public class Empresas {
     @Column(name="telefonoEmpresa")
     private String telefonoEmpresa;
 
-    @OneToMany(mappedBy = "empresas")
-    private Set<Empleados> empleado = new HashSet<>();
+     @OneToMany(mappedBy = "empresas")
+    private Set<Empleados> empleados = new HashSet<>();
 
 
     public Empresas() {
     }
 
     //Constructor
-    public Empresas(String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, int nitEmpresa) {
-        this.nitEmpresa = nitEmpresa;
-        this.nombreEmpresa = nombreEmpresa;
-        this.direccionEmpresa = direccionEmpresa;
-        this.telefonoEmpresa = telefonoEmpresa;
-    }
+    
 
     //Métodos
 
@@ -77,4 +72,8 @@ public class Empresas {
     public void setId (Long id) {
         this.id = id;
     }
+
+   
+
+     
 }

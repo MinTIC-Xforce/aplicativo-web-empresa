@@ -20,7 +20,6 @@ public class EmpleadosController {
 
     @PostMapping("/users")
     public Empleados createPostEmpleado(@RequestBody Empleados empleado){
-        System.out.println(empleado.getEmpresas().getId());
         return this.service.createEmpleado(empleado);
     }
 

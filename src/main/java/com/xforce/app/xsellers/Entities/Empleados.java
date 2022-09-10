@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="empleados")
 
@@ -14,10 +16,13 @@ public class Empleados {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEmpleado;
 
+     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresas empresas;
-
+ 
+    
     @OneToMany(mappedBy = "empleados")
     private Set<MovimientoDinero> movimientoDinero = new HashSet<>();
 
@@ -34,28 +39,15 @@ public class Empleados {
     private Long rolEmpleado;
 
     //Constructor
-   /*  public Empleados (String nombresEmpleado, String apellidosEmpleado, String correoEmpleado, String empresaEmpleado, Long rolEmpleado, Empresas empresas) {
-        this.nombresEmpleado = nombresEmpleado;
-        this.apellidosEmpleado = apellidosEmpleado;
-        this.correoEmpleado = correoEmpleado;
-        this.rolEmpleado = rolEmpleado;
-        this.empresas = empresas;
-    }*/
+  
 
     public Empleados (){
        
 
     }
 
-    public String toString () {
-        return  this.nombresEmpleado + " " + this.empresas;
-    }
+    
 
-
-    private enum rolEmpleado {
-        USUARIO,
-        ADMINISTRADOR
-      }
 
     //Métodos
 
@@ -93,14 +85,6 @@ public class Empleados {
         this.rolEmpleado = rolEmpleado;
     }
 
-    public Empresas getEmpresas() {
-        return this.empresas;
-    }
-
-    public void setEmpresas(Empresas empresas) {
-        this.empresas = empresas;
-    }
-
     public Long getIdEmpleado() {
         return this.idEmpleado;
     }
@@ -108,12 +92,15 @@ public class Empleados {
     public void setIdEmpleado(Long idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
-    public Set<MovimientoDinero> getMovimientoDinero() {
-        return this.movimientoDinero;
+
+     
+     public Empresas getEmpresas() {
+        return this.empresas;
     }
 
-    public void setMovimientoDinero(Set<MovimientoDinero> movimientoDinero) {
-        this.movimientoDinero = movimientoDinero;
+    public void setEmpresas(Empresas empresas) {
+        this.empresas = empresas;
     }
+    
 
 }
