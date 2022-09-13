@@ -2,8 +2,6 @@ package com.xforce.app.xsellers.Entities;
 
 import javax.persistence.*;
 
-import java.util.Optional;
-
 
 @Entity
 @Table(name="movimientoDinero")

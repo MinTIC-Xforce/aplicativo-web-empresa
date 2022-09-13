@@ -21,10 +21,13 @@ public class EmpleadosService {
         return this.repository.findAll();
     }
 
-    public Empleados getEmpleado(long id){
+    public Empleados getEmpleado(long id) throws Exception{
         Optional<Empleados> empleadoResponse =  this.repository.findById(id);
-        Empleados empleado = empleadoResponse.get();
-        return empleado;
+        if (empleadoResponse.isPresent()){
+            return empleadoResponse.get();
+        }else{
+            throw new Exception("Usuario no existe");
+        }
     }
 
     public Empleados createEmpleado(Empleados newEmpleado){
@@ -36,6 +39,7 @@ public class EmpleadosService {
     }
 
     public void updateEmpleado(long id, Empleados empleado){
+        
         Empleados empleadoToUpdate =  this.repository.getReferenceById(id);
         empleadoToUpdate.setNombresEmpleado(empleado.getNombresEmpleado());
         empleadoToUpdate.setApellidosEmpleado(empleado.getApellidosEmpleado());
