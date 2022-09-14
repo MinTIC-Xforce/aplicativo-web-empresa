@@ -45,17 +45,23 @@ public class EmpleadosController {
             }
         }
     @PatchMapping("/user/{id}")
-    public Empleados usersPathIdList(@PathVariable long id, @RequestBody Empleados empleado){
-
-        
-            this.service.updateEmpleado(id, empleado);
-            return empleado;
+    public ResponseEntity<Object> usersPathIdList(@PathVariable long id, @RequestBody Empleados empleado){
+        try {
+        this.service.updateEmpleado(id, empleado);
+        return new ResponseEntity<>(empleado,
+                  HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(),
+                HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
 
 
     @DeleteMapping("/user/{id}")
     public void usersPathIdList(@PathVariable long id){
         this.service.delEmpleado(id);
+        
+        
     }
 
   

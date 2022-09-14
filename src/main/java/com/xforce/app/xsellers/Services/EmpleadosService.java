@@ -38,14 +38,26 @@ public class EmpleadosService {
         this.repository.deleteById(id);
     }
 
-    public void updateEmpleado(long id, Empleados empleado){
-        
-        Empleados empleadoToUpdate =  this.repository.getReferenceById(id);
-        empleadoToUpdate.setNombresEmpleado(empleado.getNombresEmpleado());
-        empleadoToUpdate.setApellidosEmpleado(empleado.getApellidosEmpleado());
-        empleadoToUpdate.setCorreoEmpleado(empleado.getCorreoEmpleado());
-        empleadoToUpdate.setRolEmpleado(empleado.getRolEmpleado());
+    public void updateEmpleado(long id, Empleados empleado) throws Exception{
+        try {
+        //Empleados empleadoToUpdate =  this.repository.getReferenceById(id);
+        Empleados empleadoToUpdate =  this.getEmpleado(id);
+        if (empleado.getNombresEmpleado() != null){
+            empleadoToUpdate.setNombresEmpleado(empleado.getNombresEmpleado());
+        }
+        if (empleado.getApellidosEmpleado() != null){
+            empleadoToUpdate.setApellidosEmpleado(empleado.getApellidosEmpleado());
+        }
+        if (empleado.getCorreoEmpleado() != null){
+            empleadoToUpdate.setCorreoEmpleado(empleado.getCorreoEmpleado());
+        }
+        if (empleado.getRolEmpleado() != null){
+            empleadoToUpdate.setRolEmpleado(empleado.getRolEmpleado());
+        }
         this.repository.save(empleadoToUpdate);
+        }catch (Exception e) {
+            throw new Exception("Usuario no actualizado, Usuario no Existe");
+        }
 
     }
 
