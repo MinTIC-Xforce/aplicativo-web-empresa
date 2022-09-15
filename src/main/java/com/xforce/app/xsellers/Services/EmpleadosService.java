@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Service
 public class EmpleadosService {
+
     private EmpleadosRepository repository;
 
 
@@ -34,11 +35,12 @@ public class EmpleadosService {
         return this.repository.save(newEmpleado);
     }
 
-    public void delEmpleado(long id){
+    public String delEmpleado(long id){
         this.repository.deleteById(id);
+        return "Usuario eliminado de forma satisfactoria";
     }
 
-    public void updateEmpleado(long id, Empleados empleado) throws Exception{
+    public Empleados updateEmpleado(long id, Empleados empleado) throws Exception{
         try {
         //Empleados empleadoToUpdate =  this.repository.getReferenceById(id);
         Empleados empleadoToUpdate =  this.getEmpleado(id);
@@ -54,7 +56,7 @@ public class EmpleadosService {
         if (empleado.getRolEmpleado() != null){
             empleadoToUpdate.setRolEmpleado(empleado.getRolEmpleado());
         }
-        this.repository.save(empleadoToUpdate);
+        return this.repository.save(empleadoToUpdate);
         }catch (Exception e) {
             throw new Exception("Usuario no actualizado, Usuario no Existe");
         }
