@@ -1,7 +1,11 @@
 package com.xforce.app.xsellers.Controllers;
 
 import com.xforce.app.xsellers.Entities.Empleados;
+import com.xforce.app.xsellers.Entities.EmpleadoResponse;
 import com.xforce.app.xsellers.Services.EmpleadosService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,32 +18,56 @@ public class EmpleadosController {
     }
 
     @GetMapping("/users")
-    public List<Empleados> usersGetList(){
-        return this.service.getEmpleados();
+    public ResponseEntity<List<Empleados>> usersGetList(){
+        return new ResponseEntity<List<Empleados>>(
+            this.service.getEmpleados(),
+            HttpStatus.OK
+        );
     }
 
     @PostMapping("/users")
-    public Empleados createPostEmpleado(@RequestBody Empleados empleado){
-        return this.service.createEmpleado(empleado);
-    }
+    public ResponseEntity<EmpleadoResponse> createPostEmpleado(@RequestBody Empleados empleado){
+         return new ResponseEntity<>(
+            new EmpleadoResponse("Empleado Creado",
+            service.createEmpleado(empleado)),
+            HttpStatus.OK);
+        }
 
 
     @GetMapping("/user/{id}")
-    public Empleados userGetIdList(@PathVariable long id){
-        return this.service.getEmpleado(id);
+    public ResponseEntity<Object> userGetIdList(@PathVariable long id){
+        try {
+            Empleados empleado = this.service.getEmpleado(id);
+            return new ResponseEntity<>(empleado, HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity<>(e.getMessage(),
+                HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+    @PatchMapping("/user/{id}")
+    public ResponseEntity<EmpleadoResponse> usersPathIdList(@PathVariable long id, @RequestBody Empleados empleado){
+        try {
+            return new ResponseEntity<>(
+                new EmpleadoResponse("Actualizacion Exitosa", this.service.updateEmpleado(id, empleado)), 
+                HttpStatus.OK
+                );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                new EmpleadoResponse(e.getMessage(),null),
+                HttpStatus.OK);
+        }
     }
 
 
     @DeleteMapping("/user/{id}")
-    public void usersPathIdList(@PathVariable long id){
-        this.service.delEmpleado(id);
+    public ResponseEntity<EmpleadoResponse> usersPathIdList(@PathVariable long id){
+        return new ResponseEntity<>(
+            new EmpleadoResponse(this.service.delEmpleado(id),null),
+            HttpStatus.OK
+            );
     }
 
-    @PatchMapping("/user/{id}")
-    public Empleados usersPathIdList(@PathVariable long id, @RequestBody Empleados empleado){
-        this.service.updateEmpleado(id, empleado);
-        return empleado;
-    }
+  
 
 
 }
