@@ -47,4 +47,8 @@ public class MovimientoDineroService {
         return "Movimientos de la empresa " +id +" eliminados";
     }
 
+    public String deleteMovimientosById(Long id){
+        this.repository.deleteById(id);
+        return "Movimiento " +id +" Eliminado";
+    }
 }
