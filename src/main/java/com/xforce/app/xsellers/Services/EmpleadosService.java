@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Service
 public class EmpleadosService {
+
     private EmpleadosRepository repository;
 
 
@@ -21,27 +22,44 @@ public class EmpleadosService {
         return this.repository.findAll();
     }
 
-    public Empleados getEmpleado(long id){
+    public Empleados getEmpleado(long id) throws Exception{
         Optional<Empleados> empleadoResponse =  this.repository.findById(id);
-        Empleados empleado = empleadoResponse.get();
-        return empleado;
+        if (empleadoResponse.isPresent()){
+            return empleadoResponse.get();
+        }else{
+            throw new Exception("Usuario no existe");
+        }
     }
 
     public Empleados createEmpleado(Empleados newEmpleado){
         return this.repository.save(newEmpleado);
     }
 
-    public void delEmpleado(long id){
+    public String delEmpleado(long id){
         this.repository.deleteById(id);
+        return "Usuario eliminado de forma satisfactoria";
     }
 
-    public void updateEmpleado(long id, Empleados empleado){
-        Empleados empleadoToUpdate =  this.repository.getReferenceById(id);
-        empleadoToUpdate.setNombresEmpleado(empleado.getNombresEmpleado());
-        empleadoToUpdate.setApellidosEmpleado(empleado.getApellidosEmpleado());
-        empleadoToUpdate.setCorreoEmpleado(empleado.getCorreoEmpleado());
-        empleadoToUpdate.setRolEmpleado(empleado.getRolEmpleado());
-        this.repository.save(empleadoToUpdate);
+    public Empleados updateEmpleado(long id, Empleados empleado) throws Exception{
+        try {
+        //Empleados empleadoToUpdate =  this.repository.getReferenceById(id);
+        Empleados empleadoToUpdate =  this.getEmpleado(id);
+        if (empleado.getNombresEmpleado() != null){
+            empleadoToUpdate.setNombresEmpleado(empleado.getNombresEmpleado());
+        }
+        if (empleado.getApellidosEmpleado() != null){
+            empleadoToUpdate.setApellidosEmpleado(empleado.getApellidosEmpleado());
+        }
+        if (empleado.getCorreoEmpleado() != null){
+            empleadoToUpdate.setCorreoEmpleado(empleado.getCorreoEmpleado());
+        }
+        if (empleado.getRolEmpleado() != null){
+            empleadoToUpdate.setRolEmpleado(empleado.getRolEmpleado());
+        }
+        return this.repository.save(empleadoToUpdate);
+        }catch (Exception e) {
+            throw new Exception("Usuario no actualizado, Usuario no Existe");
+        }
 
     }
 

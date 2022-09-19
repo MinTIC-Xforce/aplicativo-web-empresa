@@ -2,7 +2,6 @@ package com.xforce.app.xsellers.Services;
 
 import com.xforce.app.xsellers.Entities.Empresas;
 import com.xforce.app.xsellers.Entities.MovimientoDinero;
-import com.xforce.app.xsellers.Entities.Transaction;
 import com.xforce.app.xsellers.Repositories.MovimientoDineroRepository;
 import org.springframework.stereotype.Service;
 
@@ -47,4 +46,8 @@ public class MovimientoDineroService {
         return "Movimientos de la empresa " +id +" eliminados";
     }
 
+    public String deleteMovimientosById(Long id){
+        this.repository.deleteById(id);
+        return "Movimiento " +id +" Eliminado";
+    }
 }
