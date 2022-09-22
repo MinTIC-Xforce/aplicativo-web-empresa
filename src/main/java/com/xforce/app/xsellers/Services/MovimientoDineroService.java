@@ -20,8 +20,14 @@ public class MovimientoDineroService {
         return this.repository.findAll();
     }
 
-    public List<MovimientoDinero> getMovimientosByEmpresa(Empresas idEmpresa){
-        return this.repository.findByEmpresas(idEmpresa);
+    public List<MovimientoDinero> getMovimientosByEmpresa(Empresas empresa, boolean response) throws Exception{
+
+        if ( response == false ){
+            throw new Exception("La empresa con id:" + empresa.getId()+ ", no tiene movimientos");
+        }else {
+            List<MovimientoDinero> getMovimientosByEmpresaResponse = this.repository.findByEmpresas(empresa);
+            return getMovimientosByEmpresaResponse;
+        }
     }
 
     public String createMovimiento(Long idEmpresa, MovimientoDinero mvto){
