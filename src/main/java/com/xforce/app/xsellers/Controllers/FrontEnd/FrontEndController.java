@@ -23,10 +23,10 @@ public class FrontEndController {
         }
         return "index";
     }
-    @GetMapping("/empresas")
-    public String getEmpresas(Model model){
+    //@GetMapping("/empresas")
+    //public String getEmpresas(Model model){
        // model.addAttribute("empresas", empresas)
-        return "empresas";
-    }
+    //    return "empresas";
+    //}
 
 }
