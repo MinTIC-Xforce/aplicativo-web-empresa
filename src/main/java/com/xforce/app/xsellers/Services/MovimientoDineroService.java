@@ -37,12 +37,26 @@ public class MovimientoDineroService {
         return responseText;
     }
 
-    public String updateMovimientos(Long id, MovimientoDinero mvto){
-        MovimientoDinero transactionToUpdate = this.repository.getReferenceById(id);
-        transactionToUpdate.setConceptoMovimiento(mvto.getConceptoMovimiento());
-        transactionToUpdate.setMontoMovimiento(mvto.getMontoMovimiento());
-        this.repository.save(transactionToUpdate);
-        return "Transacción " +id +" actualizada";
+    public MovimientoDinero updateMovimientos(Long id, MovimientoDinero mvto) throws Exception{
+
+        try{
+            MovimientoDinero transactionToUpdate = this.repository.getReferenceById(id);
+            if (mvto.getMontoMovimiento() != 0){
+                transactionToUpdate.setMontoMovimiento(mvto.getMontoMovimiento());
+            }
+            if (mvto.getConceptoMovimiento() != null){
+                transactionToUpdate.setConceptoMovimiento(mvto.getConceptoMovimiento());
+            }
+            if (mvto.getEmpleados() != null){
+                transactionToUpdate.setEmpleados(mvto.getEmpleados());
+            }
+            if (mvto.getEmpresas() != null){
+                transactionToUpdate.setEmpresas(mvto.getEmpresas());
+            }
+            return this.repository.save(transactionToUpdate);
+        }catch (Exception e) {
+            throw new Exception("Movimiento no actualizado, id no Existe");
+        }
 
     }
 

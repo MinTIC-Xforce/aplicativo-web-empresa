@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@
         <div>
             <h3 class="float-md-start mb-0">Xforce </h3>
             <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
+                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/">Home</a>
                 <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
             </nav>
         </div>
@@ -32,8 +32,10 @@
                     <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-lg btn-secondary fw-bold border-white ">  Ingresar  </a>
                 </div>
                 <div sec:authorize="isAuthenticated()">
-                    <a th:href="@{/users}" class="btn btn-lg btn-secondary fw-bold  ">  Ir a Empleados  </a>
                     <p> You are logged in!</p>
+                    <h4 th:text= "'Bienvenido, '+ ${user.getEmail()}"> </h4>
+                    <a th:href="@{/users}" class="btn btn-lg btn-secondary fw-bold  ">  Ir a Empleados  </a>
+
                 </div>
 
         </div>

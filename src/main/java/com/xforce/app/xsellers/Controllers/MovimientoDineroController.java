@@ -62,9 +62,16 @@ public class MovimientoDineroController {
     }
     */
     @PatchMapping("/empresas/{id}/movimientos/{trxid}")
-    public String movimientosPatchIdList(@PathVariable Empresas id, @PathVariable Long trxid ,@RequestBody MovimientoDinero mvto){
-        String response = this.service.updateMovimientos(trxid, mvto);
-        return response;
+    public ResponseEntity<MovimientoDineroResponse> movimientosPatchIdList(@PathVariable Empresas id, @PathVariable Long trxid ,@RequestBody MovimientoDinero mvto){
+        try{
+            return new ResponseEntity<>(
+                    new MovimientoDineroResponse("Actualización Exitosa", this.service.updateMovimientos(trxid, mvto)),
+                    HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(
+                    new MovimientoDineroResponse(e.getMessage(), null),
+                    HttpStatus.OK);
+        }
     }
 
     @DeleteMapping("/empresas/{id}/movimientos")
