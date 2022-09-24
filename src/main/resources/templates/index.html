@@ -31,11 +31,15 @@
                 <div sec:authorize="!isAuthenticated()">
                     <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-lg btn-secondary fw-bold border-white ">  Ingresar  </a>
                 </div>
-                <div sec:authorize="isAuthenticated()">
+                <div sec:authorize="isAuthenticated()" class = "container-authenticated">
                     <p> You are logged in!</p>
                     <h4 th:text= "'Bienvenido, '+ ${user.getEmail()}"> </h4>
+                    <div>
                     <a th:href="@{/users}" class="btn btn-lg btn-secondary fw-bold  ">  Ir a Empleados  </a>
-
+                    </div>
+                    <div>
+                    <a th:href="@{/empresas}" class="btn btn-lg btn-secondary fw-bold  ">  Ir a Empresas  </a>
+                    </div>
                 </div>
 
         </div>

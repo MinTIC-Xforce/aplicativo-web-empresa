@@ -23,4 +23,10 @@ public class FrontEndController {
         }
         return "index";
     }
+    @GetMapping("/empresas")
+    public String getEmpresas(Model model){
+       // model.addAttribute("empresas", empresas)
+        return "empresas";
+    }
+
 }
