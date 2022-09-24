@@ -1,10 +1,13 @@
 package com.xforce.app.xsellers.Services;
 
+import com.xforce.app.xsellers.Entities.Empleados;
 import com.xforce.app.xsellers.Entities.Empresas;
+import com.xforce.app.xsellers.Entities.Usuario;
 import com.xforce.app.xsellers.Repositories.EmpresasRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
