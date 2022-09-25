@@ -1,7 +1,6 @@
 package com.xforce.app.xsellers.Services;
 
 import com.xforce.app.xsellers.Entities.Usuario;
-import com.xforce.app.xsellers.Repositories.EmpresasRepository;
 import com.xforce.app.xsellers.Repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 

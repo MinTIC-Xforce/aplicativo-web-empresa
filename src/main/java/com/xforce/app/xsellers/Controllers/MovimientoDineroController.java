@@ -3,7 +3,6 @@ package com.xforce.app.xsellers.Controllers;
 import com.xforce.app.xsellers.Entities.Empresas;
 import com.xforce.app.xsellers.Entities.MovimientoDinero;
 import com.xforce.app.xsellers.Entities.MovimientoDineroResponse;
-import com.xforce.app.xsellers.Repositories.EmpresasRepository;
 import com.xforce.app.xsellers.Services.EmpresasService;
 import com.xforce.app.xsellers.Services.MovimientoDineroService;
 import org.springframework.beans.factory.annotation.Autowired;
