@@ -81,6 +81,46 @@
                 </div>
             </div>
 
+            <div>
+                <p>Empresas by Id</p>
+                <hr>
+
+                <div>
+                    <form th:action="@{/empresas/frontend/{id}(id=${33})}" th:method="get">
+                        <button type="submit">Empresa by Id</button>
+                    </form>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 ">
+                        <table class="table table-bordered  text-white text-center" id="userTable2">
+                            <thead>
+                            <tr>
+                                <th scope="col">Nit</th>
+                                <th scope="col">Nombre </th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Empleados</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="empresaItems : ${empresaById}">
+                                <td th:text="${empresaItems.nitEmpresa}"></td>
+                                <td th:text="${empresaItems.nombreEmpresa}"></td>
+                                <td th:text="${empresaItems.telefonoEmpresa}"></td>
+                                <td th:text="${empresaItems.direccionEmpresa}"></td>
+                                <td th:text="${empresaItems.empleados}">  </td>
+
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
 
         </div>
 

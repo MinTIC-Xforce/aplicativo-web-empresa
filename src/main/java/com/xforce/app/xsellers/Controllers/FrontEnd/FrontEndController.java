@@ -1,7 +1,9 @@
 package com.xforce.app.xsellers.Controllers.FrontEnd;
 
+import com.xforce.app.xsellers.Entities.Empleados;
 import com.xforce.app.xsellers.Entities.Empresas;
 import com.xforce.app.xsellers.Entities.Usuario;
+import com.xforce.app.xsellers.Services.EmpleadosService;
 import com.xforce.app.xsellers.Services.EmpresasService;
 import com.xforce.app.xsellers.Services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -20,6 +23,9 @@ public class FrontEndController {
 
     @Autowired
     EmpresasService empresasService;
+
+    @Autowired
+    EmpleadosService empleadosService;
 
 
     @GetMapping("/")
@@ -33,8 +39,23 @@ public class FrontEndController {
     @GetMapping("/empresas/frontend")
     public String getEmpresas(Model model){
         List<Empresas> empresasList = this.empresasService.getEmpresas();
+        List<Empleados> empleadosList = this.empleadosService.getEmpleados();
+
+        model.addAttribute("empleados", empleadosList);
         model.addAttribute("empresas", empresasList);
+
      return "empresas" ;
+    }
+
+    @GetMapping("/empresas/frontend/{id}")
+    public String getEmpresas(Model model, @PathVariable("id") Long IdEmpresa ){
+
+        List<Empresas> empresasList = this.empresasService.getEmpresas();
+        model.addAttribute("empresas", empresasList);
+
+        Empresas empresasById = (Empresas) this.empresasService.getEmpresa(IdEmpresa);
+        model.addAttribute("empresaById", empresasById);
+        return "empresas" ;
     }
 
 }
