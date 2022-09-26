@@ -32,22 +32,36 @@
             <p>Añadir empresa</p>
             <div class="row">
                 <div class="col">
-                    <p>Nombre o Razón Social:</p>
-                    <input type="text" id="nombre_empresa" class="form-control bg-secondary text-black border-dark fw-bold " placeholder="Nombre" aria-label="First name">
-                    <br>
-                    <p>Nit:</p>
-                    <input type="number" id="nit_empresa"  class="form-control bg-secondary text-black border-dark fw-bold" placeholder="Nit " aria-label="First name">
-                    <br>
-                    <p>Dirección</p>
-                    <input type="number" id="direccion_empresa"  class="form-control bg-secondary text-white border-dark fw-bold" placeholder="Dirección" aria-label="Last name">
-                    <br>
-                    <p>Teléfono:</p>
-                    <input type="number" id="telefono"  class="form-control bg-secondary text-white border-dark fw-bold" placeholder="Telefono " aria-label="First name">
-                </div>
-                <div class="col">
-                    <br><br><br><br><br><br><br><br>
-                    <button type="submit" id="enviarButton"  class="btn btn-success">Añadir empresa</button>
-                </div>
+
+
+                    <form th:object="${newMovimiento}" method="post" th:action="@{/empresas/movimientos}">
+
+                        <label for="emailInput">Email:</label>
+                        <input id="emailInput" type="email" th:field="*{nombreUsuario}">
+
+                        <label for="passwordInput">Password:</label>
+                        <input id="passwordInput" type="password" th:field="*{password}">
+
+
+
+
+                        <p>Nombre o Razón Social:</p>
+                        <input type="text" id="nombre_empresa" class="form-control bg-secondary text-black border-dark fw-bold " placeholder="Nombre" aria-label="First name">
+                        <br>
+                        <p>Nit:</p>
+                        <input type="number" id="nit_empresa"  class="form-control bg-secondary text-black border-dark fw-bold" placeholder="Nit " aria-label="First name">
+                        <br>
+                        <p>Dirección</p>
+                        <input type="number" id="direccion_empresa"  class="form-control bg-secondary text-white border-dark fw-bold" placeholder="Dirección" aria-label="Last name">
+                        <br>
+                        <p>Teléfono:</p>
+                        <input type="number" id="telefono"  class="form-control bg-secondary text-white border-dark fw-bold" placeholder="Telefono " aria-label="First name">
+                        </div>
+                        <div class="col">
+                            <br><br><br><br><br><br><br><br>
+                            <button type="submit" id="enviarButton"  class="btn btn-success">Añadir empresa</button>
+                        </div>
+                    </form>
             </div>
             <br>
             <p>Lista de Empresas</p>

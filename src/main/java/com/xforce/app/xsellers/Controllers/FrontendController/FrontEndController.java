@@ -1,10 +1,12 @@
-package com.xforce.app.xsellers.Controllers.FrontEnd;
+package com.xforce.app.xsellers.Controllers.FrontendController;
 
 import com.xforce.app.xsellers.Entities.Empleados;
 import com.xforce.app.xsellers.Entities.Empresas;
+import com.xforce.app.xsellers.Entities.MovimientoDinero;
 import com.xforce.app.xsellers.Entities.Usuario;
 import com.xforce.app.xsellers.Services.EmpleadosService;
 import com.xforce.app.xsellers.Services.EmpresasService;
+import com.xforce.app.xsellers.Services.MovimientoDineroService;
 import com.xforce.app.xsellers.Services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,7 +14,9 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -20,6 +24,9 @@ import java.util.List;
 public class FrontEndController {
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    MovimientoDineroService movimientoDineroService;
 
     @Autowired
     EmpresasService empresasService;
@@ -56,6 +63,15 @@ public class FrontEndController {
         Empresas empresasById = (Empresas) this.empresasService.getEmpresa(IdEmpresa);
         model.addAttribute("empresaById", empresasById);
         return "empresas" ;
+    }
+
+    @PostMapping("/empresas/{id}/movimientos")
+    public String postUsuario(@ModelAttribute("newMovimiento") MovimientoDinero newMvto, @PathVariable("id") Long IdEmpresa){
+
+        String responseText = movimientoDineroService.createMovimiento(IdEmpresa);
+
+        return "redirect:/welcome";
+
     }
 
 }
