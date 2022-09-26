@@ -1,11 +1,17 @@
 package com.xforce.app.xsellers.Entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
 
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+enum Rol {
+    ADMIN,
+    USER
+}
 
 @Entity
 @Table(name="empleados")
@@ -35,8 +41,10 @@ public class Empleados {
     private String correoEmpleado;
 
     @Column(name="rol_empleado")
-    private Long rolEmpleado;
-
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Rol.class)
+    //private Long rolEmpleado;
+    private List<Rol> rolEmpleado;
     //Constructor
   
 
@@ -44,6 +52,8 @@ public class Empleados {
        
 
     }
+
+ 
 
     
 
@@ -76,11 +86,11 @@ public class Empleados {
         this.correoEmpleado = correoEmpleado;
     }
 
-    public Long getRolEmpleado() {
+    public List<Rol> getRolEmpleado() {
         return this.rolEmpleado;
     }
 
-    public void setRolEmpleado(Long rolEmpleado) {
+    public void setRolEmpleado(List<Rol> rolEmpleado) {
         this.rolEmpleado = rolEmpleado;
     }
 
