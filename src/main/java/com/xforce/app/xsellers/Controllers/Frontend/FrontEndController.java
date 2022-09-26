@@ -1,4 +1,4 @@
-package com.xforce.app.xsellers.Controllers.FrontEnd;
+package com.xforce.app.xsellers.Controllers.Frontend;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
