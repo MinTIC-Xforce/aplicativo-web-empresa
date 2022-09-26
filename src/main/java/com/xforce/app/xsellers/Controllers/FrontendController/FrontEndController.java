@@ -65,13 +65,14 @@ public class FrontEndController {
         return "empresas" ;
     }
 
-    @PostMapping("/empresas/{id}/movimientos")
+    /*@PostMapping("/empresas/{id}/movimientos")
     public String postUsuario(@ModelAttribute("newMovimiento") MovimientoDinero newMvto, @PathVariable("id") Long IdEmpresa){
 
-        String responseText = movimientoDineroService.createMovimiento(IdEmpresa);
+        String responseText = movimientoDineroService.createMovimiento(IdEmpresa, newMvto);
 
-        return "redirect:/welcome";
+        return "redirect:/empresas";
 
     }
+    */
 
 }
