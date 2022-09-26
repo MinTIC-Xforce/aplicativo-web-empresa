@@ -100,6 +100,17 @@ public class Empleados {
     public void setEmpresas(Empresas empresas) {
         this.empresas = empresas;
     }
-    
 
+    @Override
+    public String toString() {
+        return "Empleados{" +
+                "idEmpleado=" + idEmpleado +
+                ", empresas=" + empresas +
+                ", movimientoDinero=" + movimientoDinero +
+                ", nombresEmpleado='" + nombresEmpleado + '\'' +
+                ", apellidosEmpleado='" + apellidosEmpleado + '\'' +
+                ", correoEmpleado='" + correoEmpleado + '\'' +
+                ", rolEmpleado=" + rolEmpleado +
+                '}';
+    }
 }
