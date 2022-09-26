@@ -44,10 +44,21 @@ public class MovimientoDineroController {
         return response;
     }
 
+    @PatchMapping("/empresas/{id}/movimientos/{trxid}")
+    public String movimientosPatchIdList(@PathVariable Empresas id, @PathVariable Long trxid ,@RequestBody MovimientoDinero mvto){
+        String response = this.service.updateMovimientos(trxid, mvto);
+        return response;
+    }
+
     @DeleteMapping("/empresas/{id}/movimientos")
     public String usersPathIdList(@PathVariable Empresas id){
         String response = this.service.delTodosMovimientosByEmpresa(id);
         return response;
+    }
+
+    @DeleteMapping("/empresas/{id}/movimientos/{trxid}")
+    public String deleteMovimientoById(@PathVariable Long trxid){
+        return this.service.deleteMovimientosById(trxid);
     }
 
     /*@DeleteMapping("/empresas/{id}/movimientos")
