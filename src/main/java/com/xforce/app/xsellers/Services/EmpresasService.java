@@ -22,8 +22,12 @@ public class EmpresasService {
 
     public Empresas getEmpresa(long id){
         Optional<Empresas> empresaResponse =  this.repository.findById(id);
-        Empresas empresa = empresaResponse.get();
-        return empresa;
+        if (empresaResponse.isPresent()){
+            Empresas empresa = empresaResponse.get();
+            return empresa;
+        }else {
+            return new Empresas();
+        }
     }
 
     public Empresas createEmpresa(Empresas newEmpresa){
@@ -41,5 +45,15 @@ public class EmpresasService {
         empresaToUpdate.setNombreEmpresa(empresa.getNombreEmpresa());
         empresaToUpdate.setTelefonoEmpresa(empresa.getTelefonoEmpresa());
         this.repository.save(empresaToUpdate);
+    }
+
+    public boolean getEmpresaPresent(Long id){
+        Optional<Empresas> empresaResponse =  this.repository.findById(id);
+        boolean response ;
+        if (empresaResponse.isPresent()){
+            return response = true;
+        }else {
+            return response = false;
+        }
     }
 }

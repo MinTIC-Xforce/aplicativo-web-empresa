@@ -20,8 +20,14 @@ public class MovimientoDineroService {
         return this.repository.findAll();
     }
 
-    public List<MovimientoDinero> getMovimientosByEmpresa(Empresas idEmpresa){
-        return this.repository.findByEmpresas(idEmpresa);
+    public List<MovimientoDinero> getMovimientosByEmpresa(Empresas empresa, boolean response) throws Exception{
+
+        if ( response == false ){
+            throw new Exception("La empresa con id:" + empresa.getId()+ ", no tiene movimientos");
+        }else {
+            List<MovimientoDinero> getMovimientosByEmpresaResponse = this.repository.findByEmpresas(empresa);
+            return getMovimientosByEmpresaResponse;
+        }
     }
 
     public String createMovimiento(Long idEmpresa, MovimientoDinero mvto){
@@ -31,12 +37,26 @@ public class MovimientoDineroService {
         return responseText;
     }
 
-    public String updateMovimientos(Long id, MovimientoDinero mvto){
-        MovimientoDinero transactionToUpdate = this.repository.getReferenceById(id);
-        transactionToUpdate.setConceptoMovimiento(mvto.getConceptoMovimiento());
-        transactionToUpdate.setMontoMovimiento(mvto.getMontoMovimiento());
-        this.repository.save(transactionToUpdate);
-        return "Transacción " +id +" actualizada";
+    public MovimientoDinero updateMovimientos(Long id, MovimientoDinero mvto) throws Exception{
+
+        try{
+            MovimientoDinero transactionToUpdate = this.repository.getReferenceById(id);
+            if (mvto.getMontoMovimiento() != 0){
+                transactionToUpdate.setMontoMovimiento(mvto.getMontoMovimiento());
+            }
+            if (mvto.getConceptoMovimiento() != null){
+                transactionToUpdate.setConceptoMovimiento(mvto.getConceptoMovimiento());
+            }
+            if (mvto.getEmpleados() != null){
+                transactionToUpdate.setEmpleados(mvto.getEmpleados());
+            }
+            if (mvto.getEmpresas() != null){
+                transactionToUpdate.setEmpresas(mvto.getEmpresas());
+            }
+            return this.repository.save(transactionToUpdate);
+        }catch (Exception e) {
+            throw new Exception("Movimiento no actualizado, id no Existe");
+        }
 
     }
 

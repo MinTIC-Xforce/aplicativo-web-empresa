@@ -74,7 +74,19 @@ public class Empresas {
         this.id = id;
     }
 
-   
+    public Set<Empleados> getEmpleados() {
+        return empleados;
+    }
 
-     
+    public void setEmpleados(Set<Empleados> empleados) {
+        this.empleados = empleados;
+    }
+
+    public Set<MovimientoDinero> getMovimientoDinero() {
+        return movimientoDinero;
+    }
+
+    public void setMovimientoDinero(Set<MovimientoDinero> movimientoDinero) {
+        this.movimientoDinero = movimientoDinero;
+    }
 }
