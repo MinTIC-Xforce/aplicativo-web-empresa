@@ -1,9 +1,6 @@
 package com.xforce.app.xsellers.Controllers.FrontendController;
 
-import com.xforce.app.xsellers.Entities.Empleados;
-import com.xforce.app.xsellers.Entities.Empresas;
-import com.xforce.app.xsellers.Entities.MovimientoDinero;
-import com.xforce.app.xsellers.Entities.Usuario;
+import com.xforce.app.xsellers.Entities.*;
 import com.xforce.app.xsellers.Services.EmpleadosService;
 import com.xforce.app.xsellers.Services.EmpresasService;
 import com.xforce.app.xsellers.Services.MovimientoDineroService;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -62,17 +60,39 @@ public class FrontEndController {
 
         Empresas empresasById = (Empresas) this.empresasService.getEmpresa(IdEmpresa);
         model.addAttribute("empresaById", empresasById);
+
+        model.addAttribute("movimientoDinero", new MovimientoDinero());
         return "empresas" ;
     }
 
-    /*@PostMapping("/empresas/{id}/movimientos")
-    public String postUsuario(@ModelAttribute("newMovimiento") MovimientoDinero newMvto, @PathVariable("id") Long IdEmpresa){
+    @PostMapping("/empresas/frontend/{id}/movimientos")
+    public String postUsuario(Model model){
 
-        String responseText = movimientoDineroService.createMovimiento(IdEmpresa, newMvto);
+        model.addAttribute("movimientoDinero", new MovimientoDinero());
+        MovimientoDinero movimientoDinero = (MovimientoDinero) model.getAttribute("movimientoDinero");
+        System.out.println("movimientoDinero");
+        // MovimientoDinero movimientoDinero = new MovimientoDinero();
+        // String responseText = movimientoDineroService.createMovimiento(IdEmpresa, movimientoDinero);
 
         return "redirect:/empresas";
 
     }
-    */
+
+    @GetMapping("/register")
+    public String showForm(Model model) {
+        MovimientoDinero movimientoDinero = new MovimientoDinero();
+        model.addAttribute("movimientoDinero", movimientoDinero);
+
+        return "register_form";
+    }
+    @PostMapping("/register/{id}")
+    public String submitForm(@ModelAttribute("movimientoDinero") MovimientoDinero movimientoDinero, @PathVariable("id") Long IdEmpresa) {
+        String responseText = movimientoDineroService.createMovimiento(IdEmpresa, movimientoDinero);
+        System.out.println(movimientoDinero);
+        System.out.println("__________________");
+        System.out.println(responseText);
+
+        return "redirect:/";
+    }
 
 }
