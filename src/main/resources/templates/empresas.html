@@ -28,45 +28,12 @@
 
         <div class="botton-ingresar ">
             <h2>Gestión de Empresas</h2>
-            <hr>
-            <p>Añadir empresa</p>
-            <div class="row">
-                <div class="col">
-
-                <!--
-                    <form th:object="${newMovimiento}" method="post" th:action="@{/empresas/movimientos}">
-
-                        <label for="emailInput">Email:</label>
-                        <input id="emailInput" type="email" th:field="*{nombreUsuario}">
-
-                        <label for="passwordInput">Password:</label>
-                        <input id="passwordInput" type="password" th:field="*{password}">
-
-
-
-
-                        <p>Nombre o Razón Social:</p>
-                        <input type="text" id="nombre_empresa" class="form-control bg-secondary text-black border-dark fw-bold " placeholder="Nombre" aria-label="First name">
-                        <br>
-                        <p>Nit:</p>
-                        <input type="number" id="nit_empresa"  class="form-control bg-secondary text-black border-dark fw-bold" placeholder="Nit " aria-label="First name">
-                        <br>
-                        <p>Dirección</p>
-                        <input type="number" id="direccion_empresa"  class="form-control bg-secondary text-white border-dark fw-bold" placeholder="Dirección" aria-label="Last name">
-                        <br>
-                        <p>Teléfono:</p>
-                        <input type="number" id="telefono"  class="form-control bg-secondary text-white border-dark fw-bold" placeholder="Telefono " aria-label="First name">
-                        </div>
-                        <div class="col">
-                            <br><br><br><br><br><br><br><br>
-                            <button type="submit" id="enviarButton"  class="btn btn-success">Añadir empresa</button>
-                        </div>
-                    </form>
-                   -->
-            </div>
             <br>
-            <p>Lista de Empresas</p>
-            <hr>
+            <p>
+                Lista de Empresas
+                <hr>
+            </p>
+
 
             <div class="row">
                 <div class="col-12 ">
@@ -86,7 +53,18 @@
                             <td th:text="${empresas.nombreEmpresa}"></td>
                             <td th:text="${empresas.telefonoEmpresa}"></td>
                             <td th:text="${empresas.direccionEmpresa}"></td>
-                            <td th:text="${empresas.empleados}">  </td>
+                            <th:block th:with=" empresas.empleados = null  ">
+                                <!-- <div th:each="item , iStat: ${empresas.empleados}"> -->
+                                    <!-- trae todos los elementos     -->
+                                    <!-- <a th:text="${item}" ></a>   -->
+                                    <!-- cuenta los elementos          -->
+                                    <!-- <a th:text="${iStat.count}" ></a> -->
+                                <!-- </div> -->
+                                <!-- <td th:text="${iStat.count}">  </td>  -->
+                                <!-- Dice false or true si el arreglo viene vacío     -->
+                                <!-- <td th:text="${#arrays.isEmpty(empresas.empleados)}"></td>  -->
+                                <td th:text="${#arrays.length(empresas.empleados)}"></td>
+                            </th:block>
 
                         </tr>
 
@@ -99,12 +77,9 @@
             <div>
                 <p>Empresas by Id</p>
                 <hr>
-
-                <div>
-                    <form th:action="@{/empresas/frontend/{id}(id=${33})}" th:method="get">
-                        <button type="submit">Empresa by Id</button>
-                    </form>
-                </div>
+                <form th:action="@{/empresas/frontend/{id}(id=${33})}" th:method="get">
+                    <button type="submit">Empresa by Id</button>
+                </form>
 
                 <div class="row">
                     <div class="col-12 ">
@@ -124,21 +99,36 @@
                                 <td th:text="${empresaItems.nombreEmpresa}"></td>
                                 <td th:text="${empresaItems.telefonoEmpresa}"></td>
                                 <td th:text="${empresaItems.direccionEmpresa}"></td>
-                                <td th:text="${empresaItems.empleados}">  </td>
-
+                                <th:block th:with=" empresaItems.empleados = null  ">
+                                <td >
+                                    <table class="table table-borderless text-white text-center"  >
+                                        <tr th:each="item : ${empresaItems.empleados}">
+                                            <!-- trae todos los elementos     -->
+                                            <td th:text=" 'id: ' + ${item.idEmpleado}" >  </td>
+                                            <!-- cuenta los elementos          -->
+                                            <!-- <a th:text="${iStat.count}" ></a> -->
+                                        </tr>
+                                    </table>
+                                </td>
+                                </th:block>
                             </tr>
-
 
                             </tbody>
                         </table>
                     </div>
                 </div>
-
             </div>
+            <p>Añadir Movimiento</p>
+            <hr>
+
+
+
+
+
+
 
 
         </div>
-
 
 
 

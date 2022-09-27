@@ -3,6 +3,7 @@ package com.xforce.app.xsellers.Services;
 import com.xforce.app.xsellers.Entities.Empresas;
 import com.xforce.app.xsellers.Entities.MovimientoDinero;
 import com.xforce.app.xsellers.Repositories.MovimientoDineroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,9 @@ import java.util.List;
 @Service
 public class MovimientoDineroService {
     private MovimientoDineroRepository repository;
+
+    @Autowired
+    EmpresasService empresasService;
 
     public MovimientoDineroService(MovimientoDineroRepository repository) {
         this.repository = repository;
@@ -31,7 +35,9 @@ public class MovimientoDineroService {
     }
 
     public String createMovimiento(Long idEmpresa, MovimientoDinero mvto){
-
+        Empresas EmpresaPresent = empresasService.getEmpresa(idEmpresa);
+        EmpresaPresent.setId(idEmpresa);
+        mvto.setEmpresas(EmpresaPresent);
         MovimientoDinero response = this.repository.save(mvto);
         String responseText = " Movimiento de la empresa " + idEmpresa +" creado";
         return responseText;
