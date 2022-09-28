@@ -13,17 +13,6 @@ public class SecurityConfig  {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/empresas/**")
-                .permitAll()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/movimientos/**")
-                .hasRole("ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic();
         return http.oauth2Login()
                 .and().build();
     }
