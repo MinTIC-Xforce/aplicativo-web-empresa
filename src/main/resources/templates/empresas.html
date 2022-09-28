@@ -118,8 +118,26 @@
                     </div>
                 </div>
             </div>
-            <p>Añadir Movimiento</p>
+
             <hr>
+            <p>Consultas por id</p>
+            <hr>
+            <form>
+                <br>
+                <select th:action="@{/empresas/frontend/{id}(id=${33})}" th:method="get" class="custom-select">
+                    <a type="submit" class=" btn btn-primary btn-lg active btn-dark" style="margin-left: 300px;">CONSULTAR</a>
+                    <option selected>SELECCIONE UNA EMPRESA</option>
+                    <div th:each="Empresas : ${empresas}">
+                        <option th:text="${Empresas.id}"></option>
+                    </div>
+                </select>
+                <br> <br> <br> <br>
+
+                <form >
+
+
+                </form>
+            </form>
 
 
 

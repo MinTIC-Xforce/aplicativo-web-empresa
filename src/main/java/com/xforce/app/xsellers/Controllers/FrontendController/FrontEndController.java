@@ -85,7 +85,7 @@ public class FrontEndController {
 
         return "register_form";
     }
-    @PostMapping("/register/{id}")
+    /* @PostMapping("/register/{id}") ---  coemntario con método post createMovimiento que funciona
     public String submitForm(@ModelAttribute("movimientoDinero") MovimientoDinero movimientoDinero, @PathVariable("id") Long IdEmpresa) {
         String responseText = movimientoDineroService.createMovimiento(IdEmpresa, movimientoDinero);
         System.out.println(movimientoDinero);
@@ -94,5 +94,29 @@ public class FrontEndController {
 
         return "redirect:/";
     }
+    */
+    @PostMapping("/register")
+    public String submitForm(@ModelAttribute("movimientoDinero") MovimientoDinero movimientoDinero) {
+        Empresas IdEmpresa = movimientoDinero.getEmpresas();
+        Empleados IdEmpleado = movimientoDinero.getEmpleados();
 
+
+        String responseText = movimientoDineroService.createMovimiento2(IdEmpresa, movimientoDinero);
+        System.out.println(movimientoDinero);
+        System.out.println("__________________");
+        System.out.println(responseText);
+
+        return "register_form";
+    }
+
+    @GetMapping("/empleados/frontend")
+    public String getEmpleados(Model model){
+        List<Empresas> empresasList = this.empresasService.getEmpresas();
+        List<Empleados> empleadosList = this.empleadosService.getEmpleados();
+
+        model.addAttribute("empleados", empleadosList);
+        model.addAttribute("empresas", empresasList);
+
+        return "empleados" ;
+    }
 }

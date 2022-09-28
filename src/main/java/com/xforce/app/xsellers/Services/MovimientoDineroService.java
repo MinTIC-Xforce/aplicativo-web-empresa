@@ -76,4 +76,12 @@ public class MovimientoDineroService {
         this.repository.deleteById(id);
         return "Movimiento " +id +" Eliminado";
     }
+
+    public String createMovimiento2(Empresas idEmpresa, MovimientoDinero mvto){
+
+        mvto.setEmpresas(idEmpresa);
+        MovimientoDinero response = this.repository.save(mvto);
+        String responseText = " Movimiento de la empresa " + idEmpresa +" creado";
+        return responseText;
+    }
 }
