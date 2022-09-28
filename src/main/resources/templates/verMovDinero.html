@@ -19,22 +19,27 @@
 <body style="background-image: url(/static/Imagenes/captura1.jpg)">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">CONSULTA LISTADOS EMPRESAS</a>
+        <a href="/" class="navbar-brand">CONSULTA LISTADOS EMPRESAS</a>
     </nav>
 
     <div class="container">
         <br>
         <form>
-            <a type="submit" class=" btn btn-primary btn-lg active btn-dark" style="margin-left: 300px;">CONSULTAR</a>
-            <br> <br> <br>
-            <select class="custom-select">
+            <br>
+            <select th:action="@{/empresas/frontend/{id}(id=${33})}" th:method="get" class="custom-select">
+                <a type="submit" class=" btn btn-primary btn-lg active btn-dark" style="margin-left: 300px;">CONSULTAR</a>
                 <option selected>SELECCIONE UNA EMPRESA</option>
-                <div th:each="movDineroId : ${empresas}}">
-                    <option th:text="${empresas.nombreEmpresa}"></option>
+                <div th:each="Empresas : ${empresas}">
+                    <option th:text="${Empresas.nombreEmpresa}"></option>
                 </div>
             </select>
-        </form>
+            <br> <br> <br> <br>
 
+            <form >
+
+
+            </form>
+        </form>
 
 
     </div>

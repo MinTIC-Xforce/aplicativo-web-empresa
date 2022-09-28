@@ -49,11 +49,13 @@ public class FrontMovDinero {
 */
     @GetMapping("/verMovDinero")
     public String getMovDinero(Model model){
-        List<MovimientoDinero> movDineroList = this.movimientoDineroService.getMovimientos();
+        List<Empresas> empresasList = this.empresasService.getEmpresas();
+        //List<MovimientoDinero> movDineroList = this.movimientoDineroService.getMovimientos();
        // List<Empleados> empleadosList = this.usuarioService.getEmpleados();
 
-        model.addAttribute("movDinero", movDineroList);
-       // model.addAttribute("empresas", empresasList);
+       // model.addAttribute("movDinero", movDineroList);
+        model.addAttribute("empresas", empresasList);
+       //model.addAttribute("movDinero", movDineroList);
 
         return "verMovDinero" ;
     }
@@ -61,10 +63,10 @@ public class FrontMovDinero {
     @GetMapping("/verMovDinero/{id}")
     public String getMovDineroId(@PathVariable("id") Empresas IdEmpresa, Model model) {
         List<MovimientoDinero> movimientoDineroList = this.movimientoDineroService.getMovimientosByEmpresa(IdEmpresa);
-        model.addAttribute("/verMovDineroId", movimientoDineroList);
+        model.addAttribute("verMovDineroId", movimientoDineroList);
 
         List<Empresas> empresasList = this.empresasService.getEmpresas();
-        model.addAttribute("movDineroId", empresasList);
+        model.addAttribute("nombreEmpresa", empresasList);
 
         return "verMovDinero";
     }
