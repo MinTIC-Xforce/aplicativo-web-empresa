@@ -4,6 +4,7 @@ import com.xforce.app.xsellers.Entities.Empleados;
 import com.xforce.app.xsellers.Entities.Empresas;
 import com.xforce.app.xsellers.Entities.MovimientoDinero;
 import com.xforce.app.xsellers.Entities.Usuario;
+import com.xforce.app.xsellers.Services.EmpleadosService;
 import com.xforce.app.xsellers.Services.EmpresasService;
 import com.xforce.app.xsellers.Services.MovimientoDineroService;
 import com.xforce.app.xsellers.Services.UsuarioService;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 
@@ -28,6 +30,9 @@ public class FrontMovDinero {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    EmpleadosService empleadosService;
 /*
     @GetMapping("/verMovDinero")
     public String getMovimientosByEmpresa(Model model, @PathVariable("id") Long IdEmpresa){
@@ -50,24 +55,29 @@ public class FrontMovDinero {
     @GetMapping("/verMovDinero")
     public String getMovDinero(Model model){
         List<Empresas> empresasList = this.empresasService.getEmpresas();
-        //List<MovimientoDinero> movDineroList = this.movimientoDineroService.getMovimientos();
+        List<MovimientoDinero> movDineroList = this.movimientoDineroService.getMovimientos();
        // List<Empleados> empleadosList = this.usuarioService.getEmpleados();
 
-       // model.addAttribute("movDinero", movDineroList);
+        model.addAttribute("movDinero", movDineroList);
         model.addAttribute("empresas", empresasList);
        //model.addAttribute("movDinero", movDineroList);
 
         return "verMovDinero" ;
     }
-
-    @GetMapping("/verMovDinero/{id}")
-    public String getMovDineroId(@PathVariable("id") Empresas IdEmpresa, Model model) {
-        List<MovimientoDinero> movimientoDineroList = this.movimientoDineroService.getMovimientosByEmpresa(IdEmpresa);
-        model.addAttribute("verMovDineroId", movimientoDineroList);
-
+    @GetMapping("/verMovDinero/list")
+    public String getMovDinerol(Model model){
         List<Empresas> empresasList = this.empresasService.getEmpresas();
-        model.addAttribute("nombreEmpresa", empresasList);
+        List<MovimientoDinero> movDineroList = this.movimientoDineroService.getMovimientos();
+        List<Empleados> empleadosList = this.empleadosService.getEmpleados();
 
-        return "verMovDinero";
+        model.addAttribute("movDinero", movDineroList);
+        model.addAttribute("empresas", empresasList);
+        model.addAttribute("empleados", empleadosList);
+
+        MovimientoDinero movimientoDinero = new MovimientoDinero();
+        model.addAttribute("movimientoDinero", movimientoDinero);
+
+        return "register_form" ;
     }
+
 }
